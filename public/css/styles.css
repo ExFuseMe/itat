@@ -1,0 +1,126 @@
+html, body {
+    background-color: #F0F2F5;
+    margin: 0;
+    height: 100vh;
+}
+
+
+* {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+.hero{
+    display: flex;
+    height: 100vh;
+    gap: 16px;
+}
+.sidebar {
+    height: 100%;
+    width: 200px;
+    background-color: white;
+    padding-top: 20px;
+    height: 100%;
+}
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.main, .top-menu {
+    background-color: white;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #304156;
+    height: 40px;
+}
+.main {
+    margin-top: 16px;
+    padding-top: 16px;
+}
+.side-button {
+    appearance: button;
+    text-decoration: none;
+    color: white;
+    background-color: #409EFF;
+    border-radius: 4px;
+    width: 97px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 16px;
+    border: none;
+}
+.content{
+    flex: 1 1 auto;
+}
+.top-menu {
+    padding: 16px;
+}
+.sub-menu {
+    height: 56px;
+    border-bottom: solid #C1CBDB 1px;
+}
+.information {
+    margin-top: 16px;
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+.column {
+    flex: 0 1 33%;
+    padding: 12px 8px 0px 9px;
+    font-style: normal;
+    font-weight: 400;
+}
+.popup {
+    display: none;
+
+}
+
+    .popup.open {
+        display: block;
+    }
+
+.blocker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: ' ';
+    background: rgba(0,0,0,.5);
+}
+
+.popup .contents {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    top: 0;
+    right: 0;
+    justify-content: center;
+    background: #FFF;
+    position: fixed;
+    height: 100vh;
+}
+
+.header-column {
+    background-color: #F5F7FA;
+    color: #606266;
+    font-weight: 600;
+}
