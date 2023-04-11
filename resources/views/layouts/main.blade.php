@@ -12,7 +12,8 @@
 </head>
 <body>
     <header class="header">
-        <div class="header-tag">Складской учёт <sup>β</sup>
+        <div class="header-tag">
+            Складской учёт <sup>β</sup>
             <div class="user-bar">
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
@@ -38,7 +39,7 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+        document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -54,12 +55,8 @@
         </div>
     </header>
 
-    <div class="popup">
-        <div class="blocker" onclick="hidePopup()"></div>
-        <div class="contents">
-            @yield('popup')
-        </div>
-    </div>
+    @yield('popup')
+
 
 
     <div class="hero">
@@ -72,18 +69,20 @@
             <div class="top-menu">
                 @yield('top-menu')
             </div>
-            
+
             @yield('content')
         </div>
     </div>
     <script>
-        const popup = document.querySelector('.popup');
+    const popup = document.querySelector('.popup');
+    const updatepopup = document.querySelector('.updatepopup');
         function showPopup() {
             popup.classList.add('open');
-        }
-        function hidePopup() {
-            popup.classList.remove('open');
-        }
+
+    }
+    function hidePopup() {
+        popup.classList.remove('open');
+    }
 
     </script>
 </body>

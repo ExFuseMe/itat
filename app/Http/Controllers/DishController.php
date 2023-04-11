@@ -32,10 +32,27 @@ class DishController extends Controller
         $data->save();
         return redirect()->back();
     }
-    public function show($id)
+    public function edit($current_dish)
     {
-        $dish = Dish::FindOrFail($id);
-        return view('dish.show', compact('dish'));
+        $current_dish = Dish::find($current_dish);
+        $dishes = Dish::all();
+        $categories = Category::all();
+        return view('dish.edit', compact('dishes', 'categories', 'current_dish'));
+    }
+     public function update($id)
+     {
+        $validated_data = request()->validate([
+            'name' => 'string',
+            'price' => 'Integer',
+            'count' => 'Integer',
+            'category_id' => ''
+        ]);
+        $data = Dish::find($id);
+        $data->update($validated_data);
+        $files = request()->file("image");
+        $name = $files->getClientOriginalName();
+        $files->move('images', $name);
+        return redirect()->route('menu.index');
     }
 
 }

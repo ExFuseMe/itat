@@ -210,3 +210,22 @@ input {
 .report-box{
     width: 348px;
 }
+.updatepopup {
+    display: block;
+}
+
+    .updatepopup.open {
+        display: block;
+    }
+
+
+.updatepopup .contents {
+    width: 654px;
+    display: flex;
+    top: 0;
+    right: 0;
+    background: #FFF;
+    position: fixed;
+    height: 100vh;
+    padding: 27px;
+}

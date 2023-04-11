@@ -2,14 +2,15 @@
 
 
 @section('popup')
-<div class="popup">
-    <div class="blocker" onclick="hidePopup()"></div>
+<div class="updatepopup">
+    <a href="{{route('menu.index')}}"><div class="blocker" onclick="hidePopup()"></div></a>
     <div class="contents">
     <div>
         <p>Блюдо</p>
     </div>
-    <form method="post" action="{{route('menu.store')}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('menu.update', $current_dish)}}" enctype="multipart/form-data">
         @csrf
+        @method('patch')
         <input class="file-adding" type="file" id="image" name="image" />
         <div class="text-input">
             <div class="input-wrapper">
@@ -34,8 +35,9 @@
         </div>
 
         <div class="button-group">
-            <button class="side-button" type="submit">Создать</button>
+            <button class="side-button" type="submit">Обновить</button>
             <button class="side-button reset-button" type="reset">Отмена</button>
+            <a href=""></a>
         </div>
     </form>
     </div>
@@ -65,7 +67,7 @@
             <div class="column header-column">Категория</div>
             <div class="column header-column">Цена</div>
             @foreach($dishes as $dish)
-            <div class="column"><a href="{{route('menu.edit', $dish->id)}}">{{$dish->name}}</a></div>
+            <div class="column"><a href="">{{$dish->name}}</a></div>
             <div class="column">{{$dish->category->name}}</div>
             <div class="column">{{$dish->price}} ₽</div>
             @endforeach

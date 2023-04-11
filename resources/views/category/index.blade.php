@@ -2,19 +2,22 @@
 
 
 @section('popup')
+<div class="popup">
+    <div class="blocker" onclick="hidePopup()"></div>
+    <div class="contents">
+        <form method="post" action="{{route('category.store')}}" enctype="multipart/form-data">
+            @csrf
 
-<form method="post" action="{{route('category.store')}}" enctype="multipart/form-data">
-    @csrf
+            <p>Название категории</p>
+            <input type="text" id="name" name="name" />
 
-    <p>Название категории</p>
-    <input type="text" id="name" name="name" />
-
-    <div class="button-group">
-        <button class="side-button" type="submit">Создать</button>
-        <button class="side-button reset-button" type="reset">Отмена</button>
+            <div class="button-group">
+                <button class="side-button" type="submit">Создать</button>
+                <button class="side-button reset-button" type="reset">Отмена</button>
+            </div>
+        </form>
     </div>
-</form>
-
+</div>
 @endsection
 
 @section('top-menu')
