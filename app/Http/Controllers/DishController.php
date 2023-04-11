@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 
@@ -10,18 +11,16 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all();
-        return view('dish.index', compact('dishes'));
-    }
-    public function create()
-    {
-        return view('dish.create');
+        $categories = Category::all();
+        return view('dish.index', compact('dishes', 'categories'));
     }
     public function store(Request $req)
     {
         $validated_data = $req->validate([
             'name' => 'string',
-            'price' => '',
-            'count' => ''
+            'price' => 'Integer',
+            'count' => 'Integer',
+            'category_id' => ''
         ]);
         $data = new Dish($validated_data);
         $files = $req->file("image");
@@ -29,7 +28,7 @@ class DishController extends Controller
         $files->move('images', $name);
 
 
-        $data->image_name=$name;
+        $data->image_name = $name;
         $data->save();
         return redirect()->back();
     }

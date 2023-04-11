@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReportController;
+use App\Http\Middleware\AdminPanelMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function(){
+    return redirect()->route('login');
+});
+Route::resource('/menu', DishController::class)->middleware('admin');
+Route::resource('/category', CategoryController::class)->middleware('admin');
+Route::get('/report', [ReportController::class, 'index'])->name('report.index')->middleware('admin');
 
-Route::resource('/menu', DishController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
