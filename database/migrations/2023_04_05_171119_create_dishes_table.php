@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('category_id')->nullable();
             $table->index('category_id', 'dish_category_idx');
-            $table->foreign('category_id', 'dish_category_fk')->on('categories')->references('id');
+            $table->foreign('category_id', 'dish_category_fk')->on('categories')->references('id')->onDelete('cascade');
 
         });
     }

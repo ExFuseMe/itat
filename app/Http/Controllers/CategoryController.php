@@ -28,10 +28,22 @@ class CategoryController extends Controller
         }
     }
 
-    public function destroy(){
-        dd('123');
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('category.index');
+
     }
-    public function update(){
-        dd('312');
+    public function edit(Category $category)
+    {
+        $categories = Category::all();
+        return view('category.edit', compact('category', 'categories'));
+    }
+    public function update(Category $category){
+        $validated_data = request()->validate([
+            'name' => 'string',
+        ]);
+        $category->update($validated_data);
+        return redirect()->route('category.index');
     }
 }

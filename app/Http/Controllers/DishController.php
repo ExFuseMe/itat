@@ -20,24 +20,25 @@ class DishController extends Controller
             'name' => 'string',
             'price' => 'Integer',
             'count' => 'Integer',
-            'category_id' => ''
+            'category_id' => 'Integer'
         ]);
         $data = new Dish($validated_data);
         $files = $req->file("image");
-        $name = $files->getClientOriginalName();
-        $files->move('images', $name);
-
-
-        $data->image_name = $name;
+        if ($files == null) {
+            $data->image_name = "default.webp";
+        } else {
+            $name = $files->getClientOriginalName();
+            $files->move('images', $name);
+            $data->image_name = $name;
+        }
         $data->save();
         return redirect()->back();
     }
-    public function edit($current_dish)
+    public function edit(Dish $dish)
     {
-        $current_dish = Dish::find($current_dish);
-        $dishes = Dish::all();
-        $categories = Category::all();
-        return view('dish.edit', compact('dishes', 'categories', 'current_dish'));
+        $dishes = dish::all();
+        $categories = category::all();
+        return view('dish.edit', compact('dishes', 'categories', 'dish'));
     }
      public function update($id)
      {
@@ -48,11 +49,23 @@ class DishController extends Controller
             'category_id' => ''
         ]);
         $data = Dish::find($id);
-        $data->update($validated_data);
         $files = request()->file("image");
-        $name = $files->getClientOriginalName();
-        $files->move('images', $name);
-        return redirect()->route('menu.index');
+        if($files == null){
+            $data->image_name = "default.webp";
+        }else{
+            $name = $files->getClientOriginalName();
+            $files->move('images', $name);
+        }
+        $data->update($validated_data);
+        return redirect()->route('dish.index');
     }
-
+    public function destroy(Dish $dish)
+    {
+        $dish->delete();
+        return redirect()->route('dish.index');
+    }
+    public function show(Dish $dish)
+    {
+        dd($dish);
+    }
 }
