@@ -40,7 +40,8 @@
         <div class="information">
             <div class="column header-column category-column">Наименование</div>
             @foreach($categories as $category)
-            <div class="column category-column">{{$category->name}}</div>
+            <div class="column category-column"><a href="{{route('category.edit', $category->id)}}">{{$category->name}}</a>
+</div>
             @endforeach
         </div>
 

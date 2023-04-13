@@ -62,7 +62,6 @@ html, body {
 
 .side-button {
     appearance: button;
-    text-decoration: none;
     color: white;
     background-color: #409EFF;
     border-radius: 4px;
@@ -81,10 +80,6 @@ html, body {
         content: "";
         clear: both;
         display: table;
-    }
-
-    .button-group button:not(:last-child) {
-        border-right: none; /* Prevent double borders */
     }
 
 .content {
@@ -207,8 +202,32 @@ input {
     border: 1px solid #CCCCCC;
     border-radius: 4px;
 }
-.report-box{
+.report-box {
     width: 348px;
+    background-color: white;
+    flex-direction: column;
+    flex: 0 1 348px;
+    margin-top: 36px;
+    text-align: center;
+    height: 213px;
+}
+.report-title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    align-items: center;
+    text-align: center;
+}
+.report-price {
+    margin-top: 36px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 28px;
+    align-items: center;
+    text-align: center;
+    color: #26BF00;
 }
 .updatepopup {
     display: block;
@@ -228,4 +247,10 @@ input {
     position: fixed;
     height: 100vh;
     padding: 27px;
+}
+.delete-button{
+    display: block;
+    margin-top: 23px;
+    background-color: white;
+    border: none;
 }

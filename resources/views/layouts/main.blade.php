@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Блюда</title>
     <link href={{asset('css/styles.css')}} rel="stylesheet" type="text/css" />
+    <script
+        class="jsbin"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script
+        class="jsbin"
+        src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
@@ -61,7 +67,7 @@
 
     <div class="hero">
         <div class="sidebar">
-            <a href="{{route('menu.index')}}">Блюда</a>
+            <a href="{{route('dish.index')}}">Блюда</a>
             <a href="{{route('category.index')}}">Категории</a>
             <a href="{{route('report.index')}}">Отчёты</a>
         </div>
@@ -83,7 +89,15 @@
     function hidePopup() {
         popup.classList.remove('open');
     }
-
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#dish-image').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+  }
+}
     </script>
 </body>
 </html>

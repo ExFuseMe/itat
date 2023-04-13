@@ -9,15 +9,8 @@
 @section('content')
 
 
-
-<div class="content-wrapper wrapper side-panel-open report-box">
-
-    <div class="information">
-        <div class="column header-column category-column">Общая стоимость всех блюд</div>
-        <p>{{$prices}}₽</p>
-    </div>
-
+<div class="report-box">
+    <div class="report-title">Общая стоимость всех блюд</div>
+    <div class="report-price">{{$prices}}₽</div>
 </div>
-
-
 @endsection

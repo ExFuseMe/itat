@@ -8,9 +8,12 @@
     <div>
         <p>Блюдо</p>
     </div>
-    <form method="post" action="{{route('menu.store')}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('dish.store')}}" enctype="multipart/form-data">
         @csrf
-        <input class="file-adding" type="file" id="image" name="image" />
+        <a class="file-adding" onclick="document.getElementById('image').click()" >
+            <img id ="dish-image"style="max-width:100%" src="{{asset('images/default.png')}}"/>
+        </a>
+        <input class="file-adding" type="file" id="image" name="image" hidden onchange="readURL(this);" />
         <div class="text-input">
             <div class="input-wrapper">
                 <label>Название</label>
@@ -44,8 +47,8 @@
 @endsection
 
 @section('top-menu')
-<p>Меню/блюда</p>
-<h2>Блюда</h2>
+    <p>Меню/блюда</p>
+    <h2>Блюда</h2>
 @endsection
 
 @section('content')
@@ -53,7 +56,7 @@
 
 <div class="main">
     <div class="content-wrapper wrapper side-panel-open">
-        <div class="sub-menu">
+        <div class="sub-dish">
             <button onclick="showPopup()" class="side-button">
                 Добавить
             </button>
@@ -65,7 +68,7 @@
             <div class="column header-column">Категория</div>
             <div class="column header-column">Цена</div>
             @foreach($dishes as $dish)
-            <div class="column"><a href="{{route('menu.edit', $dish->id)}}">{{$dish->name}}</a></div>
+            <div class="column"><a href="{{route('dish.edit', $dish)}}">{{$dish->name}}</a></div>
             <div class="column">{{$dish->category->name}}</div>
             <div class="column">{{$dish->price}} ₽</div>
             @endforeach

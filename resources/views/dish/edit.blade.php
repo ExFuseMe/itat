@@ -3,29 +3,32 @@
 
 @section('popup')
 <div class="updatepopup">
-    <a href="{{route('menu.index')}}"><div class="blocker" onclick="hidePopup()"></div></a>
+    <a href="{{route('dish.index')}}"><div class="blocker" onclick="hidePopup()"></div></a>
     <div class="contents">
     <div>
         <p>Блюдо</p>
     </div>
-    <form method="post" action="{{route('menu.update', $current_dish)}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('dish.update', $dish)}}" enctype="multipart/form-data">
         @csrf
         @method('patch')
-        <input class="file-adding" type="file" id="image" name="image" />
+        <a class="file-adding" onclick="document.getElementById('image').click()" >
+            <img id ="dish-image"style="max-width:100%" src="{{asset('images/'.$dish->image_name)}}"/>
+        </a>
+        <input class="file-adding" type="file" id="image" name="image" hidden onchange="readURL(this);" />
         <div class="text-input">
             <div class="input-wrapper">
                 <label>Название</label>
-                <input type="text" id="name" name="name" placeholder="Название"/>
+                <input type="text" id="name" name="name" placeholder="Название" value="{{$dish->name}}"/>
             </div>
 
             <div class="input-wrapper">
                 <label>Цена</label>
-                <input type="number" id="price" name="price" placeholder="Цена" min="0"/>
+                <input type="number" id="price" name="price" placeholder="Цена" min="0"  value="{{$dish->price}}"/>
             </div>
 
             <div class="input-wrapper">
                 <label>Количество</label>
-                <input type="number" id="count" name="count" min="1"/>
+                <input type="number" id="count" name="count" min="1"  value="{{$dish->count}}"/>
             </div>
         <select name="category_id" id="category_id" class="category-select">
             @foreach($categories as $category)
@@ -37,15 +40,21 @@
         <div class="button-group">
             <button class="side-button" type="submit">Обновить</button>
             <button class="side-button reset-button" type="reset">Отмена</button>
-            <a href=""></a>
-        </div>
+            
     </form>
+    <form action="{{route('dish.destroy', $dish->id)}}" method="post">
+                @csrf
+                @method('delete')
+                <button class="delete-button" type="submit">Удалить</button>
+            </form>
+    </div>
+
     </div>
 </div>
 
 @endsection
 
-@section('top-menu')
+@section('top-dish')
 <p>Меню/блюда</p>
 <h2>Блюда</h2>
 @endsection
@@ -55,7 +64,7 @@
 
 <div class="main">
     <div class="content-wrapper wrapper side-panel-open">
-        <div class="sub-menu">
+        <div class="sub-dish">
             <button onclick="showPopup()" class="side-button">
                 Добавить
             </button>
