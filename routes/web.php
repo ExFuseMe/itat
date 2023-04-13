@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function(){
     return redirect()->route('login');
 });
-Route::resource('/menu', DishController::class)->middleware('admin');
+Route::resource('/dish', DishController::class)->middleware('admin');
 Route::resource('/category', CategoryController::class)->middleware('admin');
 Route::get('/report', [ReportController::class, 'index'])->name('report.index')->middleware('admin');
 
